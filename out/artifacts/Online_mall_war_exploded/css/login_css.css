@@ -1,0 +1,71 @@
+.login_form{
+    height: 400px;
+    width: 300px;
+    /* 以块的形式展现出来，但是不会独占行 */
+    display: inline-block;
+    margin-top: 40px;
+    margin-left: 900px;
+    background-color: dodgerblue;
+    /*设置透明度*/
+    opacity:90% ;
+}
+.background{
+    width: auto;
+    height: auto;
+}
+.login_text{
+    /*右补丁*/
+    margin-top: 50px;
+    /*内补丁*/
+    padding: 20px;
+}
+.userName,.pwd{
+    margin-bottom: 9px;
+    position: relative;
+    height: 36px;
+    margin-left: 10px;
+}
+.pwd_text,.userName_text{
+    width: 240px;
+    height: 25px;
+}
+.form_submit{
+    margin-left: 48px;
+}
+.login_btn{
+    width: 200px;
+    height: 30px;
+    margin-top: 20px;
+    background-color: pink;
+}
+.mall_head{
+    width: 100%;
+    height: 80px;
+    text-align: center;
+    background-color: cornflowerblue;
+    margin-bottom: -70px;
+    border: 1px solid gray;
+    font-size: 60px;
+    color: lightblue;
+}
+.register_btn{
+    margin-left: 100px;
+    margin-top: 70px ;
+    font-size: 15px;
+    text-decoration: none;
+}
+.panel-header{
+    font-size: 16px;
+    font-family: Arial;
+    color: white;
+    border-bottom: 1px solid #dddddd;
+    width: 150px;
+    margin-left: 70px;
+    padding-left: 30px;
+}
+/*边框圆角*/
+input{
+    outline-style: none ;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}

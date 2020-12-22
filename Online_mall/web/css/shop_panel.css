@@ -1,0 +1,51 @@
+.table{
+    margin-top: 15px;
+}
+.left{
+    height: 650px;
+    width: 150px;
+    border: 2px solid orangered;
+    padding: 5px;
+    margin-left: -4px;
+    margin-top: -2px;
+    float: left;
+}
+/*具体类别*/
+.left span{
+    font-weight: bold;
+}
+.left a{
+    color: #555555;
+    font-size: 12px;
+}
+/*新书上架*/
+.new_book{
+    width:900px;
+    height: 260px;
+    margin-left: 14px;
+}
+/*新书*/
+.new_book_list{
+    display: flex;
+}
+.right{
+    margin-left: -20px;
+    height: 650px;
+    width: 160px;
+    margin-top: -13px;
+}
+.right_top{
+    height: 100px;
+    width: 160px;
+    border: 1px dashed gray;
+}
+.right_mid{
+    height: 400px;
+    width: 160px;
+    border: 1px solid gray;
+}
+.right_mid a{
+    color: black;
+}
+
+

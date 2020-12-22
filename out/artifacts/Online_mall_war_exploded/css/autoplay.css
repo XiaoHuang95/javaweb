@@ -1,0 +1,63 @@
+/*轮播图框*/
+.warp {
+    margin-top: -30px;
+    margin-left: 0px;
+    width: 930px;
+    height: 430px;
+    position: relative;
+    /*隐藏溢出的内容*/
+    overflow: hidden;
+}
+/*图片框*/
+.broadcast {
+    margin: 15px;
+    width: 900px;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+}
+/*设置无序列表*/
+.broadcast ul {
+    width: 600%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    padding: 0;
+    list-style: none;
+}
+.broadcast li {
+    left: 0;
+    float: left;
+    list-style: none;
+    cursor: pointer;
+}
+/*设置图片大小*/
+.broadcast img {
+    width: 1000px;
+    height: 500px;
+}
+/*设置有序列表*/
+.broadcast ol {
+    position: absolute;
+    right: 20px;
+    bottom: 5px;
+}
+
+.broadcast ol li {
+    position: relative;
+    float: left;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgba(155, 155, 155, .45);
+    color: #fff;
+    text-align: center;
+    margin-right: 15px;
+    cursor: pointer;
+    line-height: 20px;
+}
+
+.broadcast ol li.first-li {
+    /*设置颜色和透明度*/
+    background-color: rgba(248, 248, 248, 0.45)
+}

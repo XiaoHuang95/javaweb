@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--告诉浏览器准备接受一个 HTML 文档-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>乌托邦书店</title>
+    <link rel="stylesheet" href="../css/shop_panel.css"/>
+    <link rel="stylesheet" href="../css/autoplay.css"/>
+    <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="../js/autoplay.js"></script>
+    <!--销量排行-->
+    <script type="text/javascript">
+        $(function () {
+            $.ajax({
+                url: "../search",
+                type: "post",
+                dataType: "json",
+                success: function (product) {
+                    $.each(product, function (i, n) {
+                        //跳出循环
+                        if (i > 4) {
+                            return false
+                        }
+                        $(".new_book_list").append("<div>" + "<img src=" + n.imgurl + ">" +
+                            "&nbsp&nbsp&nbsp<br>" + "<a href="+"../show?id="+n.id+" style='color: #555555'>" +
+                            "&nbsp&nbsp&nbsp" + n.name +
+                            "</a>" + "</div>")
+
+                        $(".right_mid").append("<a href='' style='font-size: 10px;'>" + (i + 1) + n.name + "<font>已售：</font>" + n.salenum + "<font>本</font>" + "</a>" +
+                            "<hr style='color: #555555;'>")
+                    })
+                }
+            })
+            return true;
+        })
+    </script>
+
+</head>
+<body>
+<div id="head">
+    <!--书城顶部-->
+    <script>
+        $("#head").load("head.html")
+    </script>
+</div>
+<!--详细分类-->
+<table class="table">
+    <tr>
+        <td>
+            <div class="left">
+                <div id="edu" class="edu">
+                    <span>教育</span>
+                    <div>
+                        <a href="">教材|</a>
+                        <a href="">外语|</a>
+                        <a href="">考试|</a>
+                        <a href="">教辅|</a>
+                        <a href>工具书</a>
+                    </div>
+                    <hr>
+                </div>
+                <div id="novel" class="novel">
+                    <span>文学</span>
+                    <div>
+                        <a href="">四大名著|</a>
+                        <a href="">外国名著|</a>
+                        <a href="">当代小说|</a>
+                        <a href="">现代散文|</a>
+                        <a href="">科幻小说|</a>
+                    </div>
+                    <hr>
+                </div>
+                <div id="resk" class="rwsk">
+                    <span>社科</span>
+                    <div>
+                        <a href="">历史|</a>
+                        <a href="">哲学|</a>
+                        <a href="">军事/政治|</a>
+                        <a href="">社会科学|</a>
+                        <a href>法律</a>
+                    </div>
+                    <hr>
+                </div>
+                <div id="kj" class="kj">
+                    <span>科技</span>
+                    <div>
+                        <a href="">建筑|</a>
+                        <a href="">生物|</a>
+                        <a href="">工业</a>
+                    </div>
+                    <hr>
+                </div>
+                <div id="sh" class="sh">
+                    <span>生活</span>
+                    <div>
+                        <a href="">美食|</a>
+                        <a href="">运动|</a>
+                        <a href="">旅游|</a>
+                        <a href="">家居|</a>
+                        <a href="">育儿</a>
+                    </div>
+                    <hr>
+                </div>
+                <div id="jg" class="jg">
+                    <span>计算机</span>
+                    <div>
+                        <a href="">编程语言|</a>
+                        <a href="">操作系统|</a>
+                        <a href="">计算机等级</a>
+                    </div>
+                    <hr>
+                </div>
+                <div id="yx" class="yx">
+                    <span>医学</span>
+                    <div>
+                        <a href="">外科|</a>
+                        <a href="">内科|</a>
+                    </div>
+                    <hr>
+                </div>
+                <div id="ts" class="ts">
+                    <span>少儿</span>
+                    <div>
+                        <a href="">科普/百科|</a>
+                        <a href="">绘本|</a>
+                        <a href="">文学|</a>
+                        <a href="">英语</a>
+                    </div>
+                </div>
+            </div>
+        </td>
+        <td>
+            <!--轮播图-->
+            <div class="warp" id="box_autoplay">
+                <div class="broadcast" id="broadcast">
+                    <ul id="img_list">
+                        <li><img src="../img/index1.jpg"></li>
+                        <li><img src="../img/index2.jpg"></li>
+                        <li><img src="../img/index3.jpg"></li>
+                        <li><img src="../img/index4.jpg"></li>
+                        <li><img src="../img/index5.jpg"></li>
+                    </ul>
+                    <ol id="button_list"><!--轮播按钮-->
+                        <li class="first_li" id="li_1">1</li>
+                        <li id="li_2">2</li>
+                        <li id="li_3">3</li>
+                        <li id="li_4">4</li>
+                        <li id="li_5">5</li>
+                    </ol>
+                </div>
+            </div>
+            <!--书城主页中间下面新书栏-->
+            <div class="new_book">
+                <div class="title_item">
+                    <span style="color: red;font-size: 30px">新书上架</span>
+                    <hr color="orangered">
+                </div>
+                <div class="new_book_list">
+                </div>
+            </div>
+        <td/>
+        <!--书城主页右侧栏-->
+        <td>
+            <div class="right">
+                <div class="right_top">
+                    <font style="font-weight: bold;">最新动态</font><br>
+                    <a href="" style="font-size: 14px;color:#555555">1.精选图书满100减40</a>
+                    <br>
+                    <a href="" style="font-size: 14px;color:#555555">2.谈古今人生满100减50</a>
+                    <br>
+                    <a href="" style="font-size: 14px;color:#555555">3.万种图书五折封顶</a>
+                </div>
+                <br>
+                <font style="font-size: 20px;font-weight: bold" color="#ff4500">新书热卖榜</font>
+                <div class="right_mid" style="padding-left: 5px" id="right_mid">
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+<!--书城底部-->
+<div id="foot">
+    <script>
+        $("#foot").load("foot.html")
+    </script>
+</div>
+<!--引入公共代码部分-->
+</body>
+</html>

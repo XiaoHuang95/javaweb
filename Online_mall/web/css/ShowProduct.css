@@ -1,0 +1,23 @@
+#middle_div{
+    border: #5bc0de solid 1px;
+    width:500px;
+    height: 400px;
+    margin-left: 30%;
+    margin-right: 50%;
+    margin-top: 20px;
+    background-color: #b7d2ff;
+}
+#text{
+    width: 100px;
+    float: right;
+    margin-right: 200px;
+    margin-top: 20px;
+}
+#img{
+    width: 200px;
+    display: inline-block;
+    margin-top: 15px;
+}
+hr{
+    width: 298px;
+}

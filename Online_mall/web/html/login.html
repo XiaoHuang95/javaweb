@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>登录-乌托邦的书店</title>
+        <link rel="stylesheet" href="../css/login_css.css">
+        <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+        <style>
+            .form_logo {
+                border: 1px solid black;
+                width: 100%;
+                height: 500px;
+                margin-top: 70px;
+                background-size: 100% 100%;
+                background-image: url("../img/背景图片.jpg");
+                background-repeat: no-repeat;
+                display: inline-block;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <div class="mall_head">
+                乌托邦的书店
+            </div>
+            <div class="form_logo">
+                <div class="login_form" id="login_form">
+                    <!--面板的头部-->
+                    <div class="panel-header">
+                        <h2>欢迎登录</h2>
+                    </div>
+                    <form action="../login" method="post">
+                        <div class="login_text">
+                            <div class="userName"><input type="text" name="userName" placeholder="请输入用户名" class="userName_text" id="name"></div>
+                            <div class="pwd"><input type="password" name="password" placeholder="密码" class="pwd_text"></div>
+                        </div>
+                        <div class="form_submit">
+                            <input type="submit" value="登录" class="login_btn"/>
+                        </div>
+                        <div class="register_btn">
+                            <a class="register_btn" href="../html/register.html">
+                                立即注册
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

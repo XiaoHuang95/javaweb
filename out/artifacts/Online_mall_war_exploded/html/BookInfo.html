@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/ShowProduct.css"/>
+    <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $.ajax({
+                url: '../showData',
+                type: 'post',
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data.id)
+                        $('#img_url').attr('src', data.imgurl)
+                        $('#book_name').text("书名:" + data.name + "")
+                        $('#book_price').text("价格: ￥" + data.price + "");
+                        $('#book_type').text("类型: "+data.type+"")
+                        $('#add_car').click(function () {
+                            location.href = "../addCar?id="+data.id
+                        })
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+<div id="head" style="margin-top: -20px">
+    <script>
+        $('#head').load('head.html');
+    </script>
+</div>
+<div style="background: url('../img/banner1.png')">
+<div id="middle_div">
+    <div id="img">
+        <img src="" id="img_url"/>
+    </div>
+    <div id="text">
+        <div id="book_name" style="width: 298px" ></div><hr/>
+        <div id="book_price"></div><hr/>
+        <div id="book_type" style="width: 298px"></div><hr/>
+        <div>
+            <button id="add_car">加入购物车</button>
+        </div>
+    </div>
+</div>
+</div>
+<div id="foot" style="margin-top: 180px">
+    <script>
+        $('#foot').load('foot.html')
+    </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,211 @@
+a:link {color: #FF0000}		/* 未访问的链接 */
+a:hover {
+    /* 鼠标移动到链接上 */
+    color: #0000FF;
+    text-decoration: none;
+}
+a:active {color: #0000FF}	/* 选定的链接 */
+
+/*设置所有的链接样式*/
+a{
+    text-decoration: none;
+}
+/*设置logo框和搜索框*/
+.logo_search{
+    width: 100%;
+    height: 100px;
+    margin-top: -40px;
+    display: flex;
+    background: url("../img/banner2.png");
+    border: 2px solid whitesmoke;
+}
+.logo{
+    width: 150px;
+    height: 100%;
+}
+/*设置logo图片大小*/
+.logo img{
+    width: 200px;
+    height: 100%;
+}
+/*设置搜索框*/
+.search{
+    width: 580px;
+    height: 40px;
+    margin: auto;
+    display: flex;
+}
+/*搜索框长度*/
+.search_text{
+    width: 75%;
+    height: 43px;
+    border: 2px solid red;
+    border-right: white;
+}
+/*购物车div*/
+.car{
+    border:2px solid red;
+    width: 9%;
+    height: 40%;
+    margin-top: 24px;
+    background:red ;color: #dddddd;
+}
+.car_href{
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 18px;
+}
+.car_text{
+    margin-top:-32px;
+    margin-left: 40px;
+}
+/*我的订单*/
+.order{
+    border: 2px solid red;
+    width: 8%;
+    height:30%;
+    margin-top: 24px;
+    margin-right: 10px;
+    text-align: center;
+}
+.order_href{
+    text-decoration: none;
+    color: grey;
+    /*调整超链接使其居中*/
+    line-height: 40px;
+    font-size: 18px;
+}
+/*欢迎div*/
+.wel_log_reg{
+    width: 100%;
+    height: 20px;
+    border: 1px solid whitesmoke;
+    background-color: white;
+    font-size: 13px;
+    margin-bottom: 40px;
+}
+/*注册和登录链接*/
+.login_href,.register_href{
+    text-decoration: none;
+    color: indianred;
+    margin-left: 10px;
+}
+
+/*分类栏div*/
+.sort{
+    width:80%;
+    text-align:center;
+    overflow: hidden;
+    display:inline-block;
+    margin-right: auto;
+    margin-left: auto;
+}
+/* 去掉a标签的下划线 */
+.sort a {
+    width: 78px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 15px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+/* 设置ul和li的样式 */
+.sort ul , .sort li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    float: left;
+}
+
+/* 设置二级菜单绝对定位，并隐藏 */
+.sort > ul > li > ul {
+    position: absolute;
+    display: none;
+}
+
+/* 设置二级菜单的li的样式 */
+.sort > ul > li > ul > li {
+    float: none;
+}
+
+/* 鼠标放在一级菜单上，显示二级菜单 */
+.sort > ul > li:hover ul {
+    display: block;
+}
+/* 一级菜单 */
+.sort > ul > li > a {
+    color: black;
+    text-align: center;
+    display: block;
+    background-color: greenyellow;
+}
+
+/* 在一级菜单中，第一个不设置左边框 */
+.sort > ul > li:first-child > a {
+    border-left: none;
+}
+
+/* 在一级菜单中，鼠标放上去的样式 */
+.sort > ul > li > a:hover {
+    color: #f0f;
+    background-color: #bcf;
+}
+
+/* 二级菜单 */
+.sort > ul > li > ul > li > a {
+    line-height: 20px;
+    color: #456;
+    text-align: center;
+    border-top: none;
+    display: block;
+    background-color: #3e8f3e;
+}
+
+/* 在二级菜单中，第一个设置顶边框 */
+.sort > ul > li > ul > li:first-child > a {
+    border-top: 1px solid #ccc;
+}
+
+/* 在二级菜单中，鼠标放上去的样式 */
+.sort > ul > li > ul > li > a:hover {
+    color: #a4f;
+    background-color: #cdf;
+}
+/*分类栏*/
+.div_menu{
+    text-align: center;
+    height: 50px;
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    background: url("../img/banner.png") 100% 100% no-repeat;
+}
+/*全部商品分类*/
+.sort_all{
+    font-size: 18px;
+    width: 150px;
+    text-decoration: none;
+    padding-top: 10px;
+    text-align:left;
+    padding-left: 10px;
+    background-color: orangered;
+}
+.all_classify{
+    color: white;
+    font-weight: bold;
+}
+/*商品分类*/
+.sort{
+    margin-top: 10px;
+}
+.hr{
+    width: 100%;
+    border: 1px solid orangered;
+}
+/*边框圆角*/
+input{
+    outline-style: none ;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
