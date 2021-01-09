@@ -4,7 +4,10 @@
     <file url="file://$PROJECT_DIR$/Online_mall/src/com/blank/controller/LoginServlet.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/Online_mall/src/com/blank/controller/OneServlet.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/Online_mall/src/com/blank/controller/RegisterServlet.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/Online_mall/src/com/blank/controller/SubmitOrderServlet.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/Online_mall/src/com/blank/controller/paymentOrderServlet.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/Online_mall/src/com/blank/dao/UserDao.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/Online_mall/src/com/blank/test.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/Online_mall/web/css/login_css.css" charset="GBK" />
     <file url="file://$PROJECT_DIR$/Online_mall/web/css/shop_panel.css" charset="GBK" />
   </component>
