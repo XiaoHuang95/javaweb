@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改密码</title>
+</head>
+<body>
+    <form action="../updateUser" method="post">
+        <table>
+            <tr>
+                <td>用户名：</td>
+                <td><input type="text" name="userName" placeholder="请输入用户名"/></td>
+            </tr>
+            <tr>
+                <td>原密码：</td>
+                <td><input type="password" name="opwd" placeholder="请输入原密码"/></td>
+            </tr>
+            <tr>
+                <td>新密码</td>
+                <td><input type="password" name="npwd" placeholder="请输入新的密码"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="确认修改"/>>
+               <input type="reset" value="清空"/></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

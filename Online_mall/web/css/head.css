@@ -38,7 +38,7 @@ a{
 /*搜索框长度*/
 .search_text{
     width: 75%;
-    height: 43px;
+    height: 34px;
     border: 2px solid red;
     border-right: white;
 }
@@ -62,8 +62,8 @@ a{
 /*我的订单*/
 .order{
     border: 2px solid red;
-    width: 8%;
-    height:30%;
+    width: 92px;
+    height:30px;
     margin-top: 24px;
     margin-right: 10px;
     text-align: center;

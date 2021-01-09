@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>购物车</title>
+    <link rel="stylesheet" href="../css/car.css">
+    <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $.ajax({
+                url: '../queryOrder',
+                dataType: 'json',
+                type: 'post',
+                success: function (data) {
+                    console.log(data[1].id)
+                    $.each(data,function (i,n) {
+                        var node = "<tr>" +
+                            "<td>" + n.id + "</td>" +
+                            "<td class='total'>" + n.total + "</td>" +
+                            "<td id='address"+n.pid +"'>" + n.receiverAddress + "</td>" +
+                            "<td id='name"+n.pid +"'>" + n.receiverName + "</td>" +
+                            "<td id='phone"+n.pid +"'>" + n.receiverPhone + "</td>" +
+                            "<td id='time"+n.pid +"'>" + n.date + "</td>" +
+                            "<td id='state"+n.pid +"'>" + n.orderstate + "</td>" +
+                            "<td><button type='button' onclick='del(" + n.id + ")' >删除</button>" +
+                            "<button type='button' onclick='payment(" + n.id + ")' >支付</button>" +
+                            "</td>" + "</tr>";
+                        $('#cat_row').append(node);
+                    })
+                }
+            })
+        })
+
+        //删除购物车的商品
+        function del(id) {
+            location.href = "../removeOrder?id="+id;
+        }
+        //支付
+        function payment(id) {
+            location.href = "../paymentOrder?id="+id;
+        }
+    </script>
+</head>
+<body>
+<div id="head">
+    <script>
+        $("#head").load("head.html")
+    </script>
+</div>
+<div id="car_table" style="border: orangered solid 1px;">
+    <table class="table">
+        <thead>
+        <tr>
+            <td>订单ID</td>
+            <td>订单总价</td>
+            <td>收货地址</td>
+            <td>收货人</td>
+            <td>电话</td>
+            <td>订单时间</td>
+            <td>订单状态</td>
+            <td>操作</td>
+        </tr>
+        </thead>
+        <tbody id="cat_row" style="height:300px"></tbody>
+    </table>
+</div>
+<div id="foot">
+    <script>
+        $("#foot").load("foot.html")
+    </script>
+</div>
+</body>
+</html>

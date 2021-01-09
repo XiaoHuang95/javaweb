@@ -3,71 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <title>购物车</title>
-    <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../css/car.css">
     <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript">
+        var sum = 0;
+        var arr = new Array();
         $(function () {
             $.ajax({
                 url: '../car',
                 dataType: 'json',
                 type: 'post',
                 success: function (data) {
-                    console.log(data)
-                    //说明商品未加入到购物车
-                    for (var i = 0; i < data.length; i++) {
-                        var num = i + 1;
-                        var node = "<tr><td>" + num + "</td>" +
-                            "<td>" + data[i].name + "</td>" +
-                            "<td>" + data[i].price + "</td>" +
-                            "<td><input type='button' οnclick='decrease(this)' value='-' class='minus'/>" +
-                            "<input type='text' size='3' value='1' class='num' />" +
-                            "<input type='button' οnclick='increase(this)' value='+' class='plus' />" + "</td>" +
-                            "<td>" + "<span type='text' size='3' class='total'>" + data[i].price + "</span>" + "</td>" +
-                            "<td><button type='button' class='btn1 btn-danger' onclick='delete(this)' >删除</button>" +
-                            "<button type='button' class='btn2 btn-success' onclick='payment(this)'>付款</button>" +
+                    $.each(data, function (i, n) {
+                        var node = "<tr>" +
+                            "<td>" + n.pid + "</td>" +
+                            "<td class='name'>" + n.pname + "</td>" +
+                            "<td id='price" + n.pid + "'>" + n.price + "</td>" +
+                            "<td><input type='button'  value='-' onclick='minus(" + n.pid + ")'/>" +
+                            "<input type='text' size='3' value='" + n.pnum + "' id='" + n.pid + "' onkeyup='limit(" + n.pid + ")' />" +
+                            "<input type='button' onclick='plus(" + n.pid + ")' value='+'  />" + "</td>" +
+                            "<td>" + "<span type='text' size='3' id='total" + n.pid + "'>" + n.price * n.pnum + "</span>" + "</td>" +
+                            "<td><button type='button' onclick='del(" + n.pid + ")' >删除</button>" +
                             "</td>" + "</tr>";
                         $('#cat_row').append(node);
+                        arr.push(n.price * n.pnum)
+                    })
+                    for (var i = 0; i < arr.length; i++) {
+                        sum += arr[i];
                     }
-                    //给动态生成的标签绑定事件
-                    //加
-                    $(document).on("click", ".plus", function () {
-                        $('.num').val(parseInt($('.num').val()) + 1)
-                        if (parseInt($('.num').val())>64){
-
-                        }
-                    })
-                    //减
-                    $(document).on("click", ".minus", function () {
-                        $('.num').val(parseInt($('.num').val()) - 1)
-                    })
-                    //设置购物数量
-                    $(document).on("keyup",".num",function () {
-                        //当数字不合法的时候自动变成1，合法数字为1-64
-                        var obj = $(".num");
-                        var userInput = obj.val()
-                        //正则表达式，第一个是【1-9】中的数组，第二个可以有也可以没有
-                        var regExp = /^[1-9][0-9]*$/;
-                        var ok = regExp.test(userInput);
-                        if (!ok) {
-                            obj.val(1);
-                        } else {
-                            if (userInput > 64) {
-                                obj.val(1);
-                            }
-                        }
-                    })
-                    //删除购物车
-                    $(document).on("click",".btn1",function () {
-                        $(this).parent('td').parent('tr').remove()
-                    })
-                    //提交订单
-                    $(document).on("click",".btn2",function (){
-                        location.href = 'welcome.html'
+                    $("#total").text(sum)
+                    $("#payment").click(function () {
+                        var node = "<form action='../submit' method='post'>" +
+                            "<table><tr>" +
+                            "<td>总价：</td>" +
+                            "<td><input type='text' name='total' value='" + $("#total").text() + "' readonly></td>" +
+                            "<tr><td>收货地址：</td>" +
+                            "<td><input type='text' name='address' style='width: 80%'></td></tr>" +
+                            "<tr><td>收货人：</td>" +
+                            "<td><input type='text' name='user'></td></tr>" +
+                            "<tr><td>联系电话：</td>" +
+                            "<td><input type='text' name='phone'></td></tr>" +
+                            "<tr><td colspan='2'><input type='submit' value='支付' style='width: 100px;height: 30px;background: orange'>" +
+                            "<input type='reset' value='重置' style='width: 100px;height: 30px;background: orange'></td></tr>"+
+                            "</tr></table>" +
+                            "</form>"
+                        $("#orderInfo").append(node)
                     })
                 }
+
             })
         })
+
+        //减
+        function minus(id) {
+            var num = "#" + id
+            var price = "#price" + id
+            var total = "#total" + id
+            location.href = "../updateCart?id=" + id + "&pnum=" + (parseInt($(num).val()) - 1)
+            if (parseInt($(num).val()) < 1) {
+                $(num).val(1)
+            }
+            $(total).text($(price).text() * parseInt($(num).val()))
+            $('#total').text(sum - $(price).text())
+        }
+
+        //加
+        function plus(id) {
+            var num = "#" + id
+            var price = "#price" + id
+            var total = "#total" + id
+            location.href = "../updateCart?id=" + id + "&pnum=" + (parseInt($(num).val()) + 1)
+            //$(num).val(parseInt($(num).val()) + 1)
+            if (parseInt($(num).val()) > 64) {
+                $(num).val(1)
+            }
+            $(total).text($(price).text() * parseInt($(num).val()))
+            $('#total').text(sum + parseInt($(price).text()))
+        }
+
+        //限制数据的输入
+        function limit(id) {
+            var num = "#" + id
+            var price = "#price" + id
+            var total = "#total" + id
+            //当数字不合法的时候自动变成1，合法数字为1-64
+            //正则表达式，第一个是【1-9】中的数组，第二个可以有也可以没有
+            var regExp = /^[1-9][0-9]*$/;
+            var ok = regExp.test($(num).val());
+            if (!ok) {
+                $(num).val(1);
+            } else {
+                if ($(num).val() > 64) {
+                    $(num).val(1);
+                }
+            }
+            location.href = "../updateCart?id=" + id + "&pnum=" + ($(num).val())
+            $(total).text($(price).text() * parseInt($(num).val()))
+        }
+
+        //删除购物车的商品
+        function del(id) {
+            location.href = "../removeCart?id=" + id;
+        }
     </script>
 </head>
 <body>
@@ -76,11 +113,11 @@
         $("#head").load("head.html")
     </script>
 </div>
-<div id="car_table" style="border: orangered solid 1px">
-    <table class="table table-hover table-striped">
+<div id="car_table" style="border: orangered solid 1px;">
+    <table id="table">
         <thead>
         <tr>
-            <td>序号</td>
+            <td>商品ID</td>
             <td>商品名称</td>
             <td>单价</td>
             <td>数量</td>
@@ -88,11 +125,18 @@
             <td>操作</td>
         </tr>
         </thead>
-        <tbody id="cat_row">
-        <tr>
+        <tbody id="cat_row" style="height:300px"></tbody>
+        <tr style="margin-top: 100px">
+            <td colspan="7" style="text-align: right">
+                合计￥:<span style="margin-right: 60px" id="total"></span>
+                <button type='button' id='payment'>结算</button>
+            </td>
         </tr>
-        </tbody>
+        </tr>
     </table>
+</div>
+<div id="orderInfo" style="margin-top: 20px">
+
 </div>
 <div id="foot">
     <script>

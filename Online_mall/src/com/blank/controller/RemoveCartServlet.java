@@ -1,5 +1,7 @@
 package com.blank.controller;
 
+import com.blank.dao.CartDao;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +14,12 @@ public class RemoveCartServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getSession().removeAttribute("cart");
-        response.sendRedirect(request.getContextPath()+"/html/car.html");
+        String pid = request.getParameter("id");
+        CartDao cartDao = new CartDao();
+        int rs = 0;
+        rs = cartDao.deleteProduct(Integer.parseInt(pid));
+        if (rs==1){
+            response.sendRedirect(request.getContextPath()+"/html/car.html");
+        }
     }
 }

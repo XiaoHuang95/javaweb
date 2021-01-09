@@ -9,14 +9,13 @@
             success: function (data) {
                 console.log(data)
                 var name = $("#login_href")[0];
-                if (data!="未登录") {
+                if (data != "未登录") {
                     name.innerHTML = data + "欢迎您！"
                     $('.loginOut').append("<a href='../loginOut'>" + "[退出]" + "</a>")
                     document.getElementById('login_href').onclick = function () {
-                        alert('您已登陆！')
                         return false;
                     }
-                }else{
+                } else {
                     name.innerHTML = data;
                     document.getElementById('car_href').onclick = function () {
                         alert('请先登录')
@@ -28,18 +27,18 @@
     })
 </script>
 <script type="text/javascript">
-    var flag = true
-    if (flag) {
-        $('.category').attr('target', '_blank')
-        flag = false
-    }
-    if (!flag) {
-        $('.category').attr('target', '_self')
-    }
+    $('.search_btn').click(function () {
+        var tar = $('#search_text').val()
+        if (tar.length == 0){
+            alert("您还未输入")
+        }else {
+            location.href = "../match?name=" + tar;
+        }
+    })
 </script>
-<style type="text/css">
+<style>
     .search_btn {
-        width: 10%;
+        width: 65px;
         height: 39px;
         border: 2px solid red;
         background: url("../img/搜索图标.png") -10px -15px no-repeat;
@@ -58,6 +57,7 @@
     <span class="loginOut" id="loginOut"></span>
     <a href="register.html" class="register_href">|没有账号？立即注册</a>
     <a href="welcome.html" class="welcome_href">|返回菜单</a>
+    <a href="UserInfo.html" class="userInfo_href">|个人中心</a>
 </div>
 <!--logo和搜索框-->
 <div class="logo_search">
@@ -68,7 +68,7 @@
     <!--搜索框-->
     <div class="search">
         <input type="text" name="bookName" id="search_text" class="search_text" placeholder="请输入书名"/>
-        <a href="" class="search_btn"></a>
+        <button  class='search_btn'></button>
     </div>
     <!--购物车-->
     <div class="car">
@@ -81,7 +81,7 @@
     </div>
     <!--订单-->
     <div class="order" style="padding-bottom: 10px">
-        <a href="" class="order_href">我的订单</a>
+        <a href="order.html" id="order_href">我的订单</a>
     </div>
 </div>
 <!--分类-->
@@ -92,7 +92,7 @@
     <div class="sort">
         <ul>
             <li>
-                <a href="../type?Typename=文学" class="type" >文学</a>
+                <a href="../type?Typename=文学" class="type">文学</a>
                 <ul>
                     <li><a href="../type?Typename=小说" class="type">小说</a></li>
                     <li><a href="../type?Typename=散文" class="type">散文</a></li>

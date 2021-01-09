@@ -1,6 +1,6 @@
 package com.blank.domain;
 
-public class User {
+public class User extends Cart {
     private Integer id;
     private String userName;
     private String password;
@@ -15,6 +15,10 @@ public class User {
         this.gender = gender;
         this.email = email;
         this.phoneNum = phoneNum;
+    }
+
+    public User() {
+
     }
 
     public Integer getId() {

@@ -8,9 +8,31 @@ public class Order {
     private String receiverAddress;
     private String receiverName;
     private String receiverPhone;
-    private String orderstate;
-    private Date date;
+    private String date;
     private Integer user_id;
+    private String orderstate;
+
+    public String getOrderstate() {
+        return orderstate;
+    }
+
+    public void setOrderstate(String orderstate) {
+        this.orderstate = orderstate;
+    }
+
+    public Order(Integer id, Double total, String receiverAddress, String receiverName, String receiverPhone, String date, Integer user_id,String orderstate) {
+        this.id = id;
+        this.total = total;
+        this.receiverAddress = receiverAddress;
+        this.receiverName = receiverName;
+        this.receiverPhone = receiverPhone;
+        this.date = date;
+        this.user_id = user_id;
+        this.orderstate = orderstate;
+    }
+
+    public Order() {
+    }
 
     public Integer getId() {
         return id;
@@ -52,19 +74,11 @@ public class Order {
         this.receiverPhone = receiverPhone;
     }
 
-    public String getOrderstate() {
-        return orderstate;
-    }
-
-    public void setOrderstate(String orderstate) {
-        this.orderstate = orderstate;
-    }
-
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

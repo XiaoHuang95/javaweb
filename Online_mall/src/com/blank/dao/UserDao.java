@@ -15,33 +15,31 @@ import java.util.List;
  */
 public class UserDao {
     DBUtil util = new DBUtil();
+    Connection conn = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
     //验证登录信息
-    public int login(String userName, String password){
-        Connection conn = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        int result = 0;
+    public User login(String userName, String password){
+        User user = new User();
         try {
             conn = util.getConnection();
-            String sql = "select count(*) from user where userName=? and password=?";
+            String sql = "select id from user where userName=? and password=?";
             ps = conn.prepareStatement(sql);
             ps.setString(1,userName);
             ps.setString(2,password);
             rs = ps.executeQuery();
             while (rs.next()){
-                result = rs.getInt("count(*)");
+                user.setId(rs.getInt("id"));
             }
         }catch (Exception e){
             e.printStackTrace();
         }finally {
             util.close(conn,ps,rs);
         }
-        return result;
+        return user;
     }
     //注册用户信息
     public int register(User user){
-        Connection conn = null;
-        PreparedStatement ps = null;
         int result = 0;
         try {
             conn = util.getConnection();
@@ -60,11 +58,26 @@ public class UserDao {
         }
         return result;
     }
+    //修改密码
+    public int alterPassword(String userName,String npwd,String opwd){
+        int res = 0;
+        try {
+            conn = util.getConnection();
+            String sql = "update user set password=? where userName = ? and password=?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1,npwd);
+            ps.setString(2,userName);
+            ps.setString(3,opwd);
+            res = ps.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            util.close(conn,ps,rs);
+        }
+        return res;
+    }
     //查询用户信息
     public List queryUsers(){
-        Connection conn = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
         List <User> usersList = new ArrayList<>();
         try {
             conn = util.getConnection();
@@ -91,8 +104,6 @@ public class UserDao {
     //删除用户信息
     public int deleteUserInfo(String id){
         int result = 0;
-        Connection conn = null;
-        PreparedStatement ps = null;
         try {
             conn = util.getConnection();
             String sql = "delete from user where id=?";

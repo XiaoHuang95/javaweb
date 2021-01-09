@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户信息</title>
+    <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $.ajax({
+                url:'../queryUser',
+                type:'post',
+                dataType:'json',
+                success:function (data) {
+                    var node = ""
+                    $("#userInfo").append()
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+    <div id="userInfo">
+
+    </div>
+</body>
+</html>

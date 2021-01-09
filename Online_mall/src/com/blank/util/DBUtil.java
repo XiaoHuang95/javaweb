@@ -27,7 +27,7 @@ public class DBUtil {
      * @throws SQLException
      */
     public static Connection getConnection() throws SQLException{
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/onlineshop",
+        return DriverManager.getConnection("jdbc:mysql://localhost:3306/onlineshop?useUnicode=true&characterEncoding=utf-8",
                 "root","root");
     }
 

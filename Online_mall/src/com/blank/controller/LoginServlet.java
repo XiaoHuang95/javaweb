@@ -1,6 +1,7 @@
 package com.blank.controller;
 
 import com.blank.dao.UserDao;
+import com.blank.domain.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,7 +17,8 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userName,password;
-        int result = 0;
+        Integer result = 0;
+        User user = new User();
         UserDao dao = new UserDao();
 //        设置字符集
         request.setCharacterEncoding("utf-8");
@@ -25,10 +27,12 @@ public class LoginServlet extends HttpServlet {
         password = request.getParameter("password");
         HttpSession session = request.getSession();
 //       验证登录信息
-        result = dao.login(userName,password);
+        user = dao.login(userName,password);
 //        登录信息输入正确
-        if ( result == 1){
+        if (user != null){
             //        将登录名放入session中
+            System.out.println(user.getId());
+            session.setAttribute("userId", user.getId());
             session.setAttribute("userName",userName);
             //重定向
             response.sendRedirect(request.getContextPath()+"/html/welcome.html");

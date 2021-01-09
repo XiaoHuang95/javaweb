@@ -1,6 +1,8 @@
 package com.blank.controller;
 
+import com.blank.dao.CartDao;
 import com.blank.dao.ProductDao;
+import com.blank.domain.Cart;
 import com.blank.domain.Product;
 
 import javax.servlet.ServletException;
@@ -18,29 +20,31 @@ public class AddCarServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProductDao productDao = new ProductDao();
-        String id = request.getParameter("id");
+        CartDao cartDao = new CartDao();
+        Cart cart = new Cart();
+        Integer rs = 0;
         Product product = new Product();
+        Integer userId = (Integer) request.getSession().getAttribute("userId");
+        String id = request.getParameter("id");
+        if (userId == null){
+            response.sendRedirect(request.getContextPath()+"/html/warning.html");
+        }
         try {
             //1.调用dao的方法根据id查找数据
             product = productDao.queryProductById(Integer.parseInt(id));
-            //创建或获得用户的session
-            HttpSession session = request.getSession(false);
-            Object username = session.getAttribute("userName");
-            if (username != null) {
-                List<Product> cart = (List<Product>) session.getAttribute("cart");
-                if (cart == null) {
-                    //首次购物创建购物车
-                    cart = new ArrayList<Product>();
-                    //将购物车放入到session对象中
-                    session.setAttribute("cart", cart);
-                }
-                //将商品放入购物车
-                cart.add(product);
-                response.sendRedirect(request.getContextPath() + "/html/car.html");
-            }else{
+            int flag = cartDao.queryProduct(product.getId());
+            if (flag ==0){
+                rs = cartDao.InsertCart(userId, product, 1);
+            }else if (flag==1){
+                rs = cartDao.updateCart(product.getId());
+            }
+            if (rs != null) {
+                response.setContentType("html/text;charset=utf-8");
+                response.sendRedirect(request.getContextPath()+"/html/car.html");
+            } else {
                 response.sendRedirect(request.getContextPath()+"/html/warning.html");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
